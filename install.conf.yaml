@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+
+# check the home dir for dead symlinks into dotfiles and delete them
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.bash_logout: bash_logout
+    ~/.bash_profile: bash_profile
+    ~/.bashrc: bashrc
+    ~/.config/:
+      glob: true
+      path: config/*
+      relink: true
+    
+
+- shell:
+    - ['git submodule update --init --recursive', 'Installing submodules']
